@@ -17,7 +17,7 @@
 body {
     align-items: center;
     background-color: var(--white);
-    background: url(/client/src/pages/Login/styles/collection.jpg) ;
+    background: url(collection.jpg) ;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -100,7 +100,7 @@ body {
 
 .overlay {
     background-color: var(--lightblue);
-    background: url(/client/src/pages/Login/styles/collection2.jpg);
+    background: url(collection2.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
