@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/styles.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
@@ -29,7 +28,7 @@ export const Navigation = () => {
               <Nav.Link href={`/users/${id}`}>
                 profile
               </Nav.Link>
-              <Nav.Link href="/search">
+              <Nav.Link href="/blog">
                 liveblog
               </Nav.Link>
             </Nav>
@@ -49,10 +48,7 @@ export const Navigation = () => {
           <Nav.Link href="/login">
             login
           </Nav.Link>
-          <Nav.Link href="/signup">
-            signup
-          </Nav.Link>
-          <Nav.Link href="/liveblog">
+          <Nav.Link href="/blog">
             liveblog
           </Nav.Link>
         </Nav>

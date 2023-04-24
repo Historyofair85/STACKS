@@ -17,6 +17,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    getPost: async (_, args, context) => {
+      const post = await Post.findOne({ _id: args._id })
+      return post;
+    },
+    getAllPosts: async (_, { order = -1, limit = 5 }, context) => {
+      return await Post.find({}).sort({ createdAt: order }).limit(limit)
+    },
   },
 
   Mutation: {
@@ -42,9 +49,14 @@ const resolvers = {
 
       return { token, user };
     },
-    createPost: async (_, args, context) => {
-      const post = await post.findOne({ _id: args._id })
-      return post;
+    createPost: async (_, {title, postText, sneakerName, image}, context) => {
+      if (context.user) {
+        const post = await Post.create({title: title, postText: postText, sneakerName: sneakerName, image: image});
+        const user = await User.findOne({ _id: context.user._id });
+        user.posts.push(post._id);
+        user.save();
+        return post
+      }
     }
   }
 }

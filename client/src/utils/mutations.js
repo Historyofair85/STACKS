@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -10,7 +10,7 @@ export const LOGIN_USER = gql`
       }
     }
   }
-`;
+`
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -22,20 +22,17 @@ export const ADD_USER = gql`
       }
     }
   }
-`;
+`
+
 export const CREATE_POST = gql`
-  mutation createPost($input: postInput){
-    addToDeck(input: $input){
-        cards{
-          name
-          text
-          imageUrl
-          manaCost
-          supertypes
-          rarity
-          types
-          cardCount
-      }
+  mutation createPost($title:String!, $postText:String!, $sneakerName:String!, $image:String) {
+    createPost(title:$title, postText:$postText, sneakerName:$sneakerName, image:$image) {
+      _id
+      title
+      createdAt
+      postText
+      sneakerName
+      image
     }
   }
-`;
+`

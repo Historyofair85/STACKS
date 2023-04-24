@@ -1,16 +1,16 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { Router, Route, Routes } from 'react-router-dom'
-// import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Navigation } from './componets/navbar/navbar'
 import { Home } from './pages/Home/home'
 import { Profile } from './pages/Profile/profile.js'
 import { Blog } from './pages/LiveBlog/blog'
-import { Login } from './pages/Login/login'
+import Login from './pages/Login/Login'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 })
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -38,17 +38,14 @@ export const App = () => {
       <ApolloProvider client={client}>
         <Navigation />
         <Router>
-          <div className='min-vh-100 d-flex flex-column'>
-            <Routes>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/signup" component={Login} /> */}
-              <Route exact path="/me" component={Profile} />
-              <Route exact path="/users/:id" component={Profile} />
-              <Route exact path="/blog" component={Blog} />
-              <Route exact path="/blog/:id" component={Blog} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/me" element={<Profile />} />
+            <Route exact path="/users/:id" element={<Profile />} />
+            <Route exact path="/blog" element={<Blog />} />
+            <Route exact path="/blog/:id" element={<Blog />} />
+          </Routes>
         </Router>
       </ApolloProvider >
     </>

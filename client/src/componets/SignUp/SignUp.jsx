@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from "../../utils/mutations"
 import Auth from '../../utils/Auth'
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
 
+// import './login.css'
 
-export const SignUp = ({ hidden }) => {
+export const SignUp = () => {
 
   const [formState, setFormState] = useState({ username: '', email: '', password: '', })
   const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -43,16 +48,48 @@ export const SignUp = ({ hidden }) => {
       )
     }
     return (
-      <div className={(hidden ? "right-panel-active" : null) + " container__form container--signup"
-      }>
-        <form action="#" className="form" id="form1">
-          <h2 className="form__title">Sign Up</h2>
-          <input type="username" placeholder="User" className="input" onChange={handleChange} />
-          <input type="email" placeholder="Email" className="input" onChange={handleChange} />
-          <input type="password" placeholder="Password" className="input" onChange={handleChange} />
-          <button className="btn" onClick={handleFormSubmit} onChange={handleChange}>Sign Up</button>
-        </form>
-      </div >
+      <Container className='container__form container--signup'
+      >
+        <Row>
+          <Form
+            onSubmit={handleFormSubmit}
+            className="form"
+            id="form1">
+            <h1 className="form__title">Sign Up</h1>
+            <Form.Control
+              placeholder="Username"
+              name="username"
+              type="text"
+              value={formState.name}
+              onChange={handleChange}
+            />
+            <Form.Control
+              placeholder="Email"
+              name="email"
+              type="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <Form.Control
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <Button
+              className="btn"
+              variant="outline-light"
+              size="lg"
+              type="submit"
+              id="submit"
+              onClick={handleFormSubmit}
+              onChange={handleChange}>
+              Enter
+            </Button>
+          </Form>
+        </Row>
+      </Container >
     )
   }
   return (
@@ -62,3 +99,5 @@ export const SignUp = ({ hidden }) => {
     </>
   );
 };
+
+export default SignUp;

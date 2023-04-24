@@ -36,6 +36,21 @@ export const QUERY_POST = gql`
       title
       createdAt
       postText
+      sneakerName
+      image
     }
   }
 `;
+
+export const GET_ALL_POSTS = gql`
+  query getAllPosts {
+    getAllPosts{
+      _id
+      title
+      sneakerName
+      image
+      postText
+      createdAt
+    }
+  }
+`

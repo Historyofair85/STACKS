@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from "../../utils/mutations"
 import Auth from "../../utils/Auth"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
 
-export const SignIn = ({ hidden }) => {
+// import './login.css'
+
+export const SignIn = () => {
   const [formState, setFormState] = useState({ email: '', password: '' })
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -48,15 +54,41 @@ export const SignIn = ({ hidden }) => {
       )
     }
     return (
-      <div className={(hidden ? "right-panel-active" : null) + " container__form container--signup"
-      }>
-        <form action="#" className="form" id="form2">
-          <h2 className="form__title">Sign In</h2>
-          <input type="username" placeholder="username" className="input" onChange={handleChange} />
-          <input type="password" placeholder="Password" className="input" onChange={handleChange} />
-          <button className="btn" onClick={handleFormSubmit} onChange={handleChange}>Sign In</button>
-        </form>
-      </div>
+      <Container classNam='container__form container--signup"'>
+        <Row>
+          <Form
+            className="form"
+            id="form2"
+            onSubmit={handleFormSubmit}>
+            <h1 className='form__title'>Log In</h1>
+            <Form.Control
+              placeholder="Your email"
+              name="email"
+              type="email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <Form.Control
+              placeholder="**********"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <div>
+              <Button
+                variant="outline-light"
+                size="lg"
+                type="submit"
+                id="submit"
+                onClick={handleFormSubmit}
+                onChange={handleChange}>
+                Enter
+              </Button>
+            </div>
+          </Form>
+        </Row>
+      </Container>
     )
   }
   return (
@@ -66,3 +98,4 @@ export const SignIn = ({ hidden }) => {
     </>
   );
 }
+export default SignIn;

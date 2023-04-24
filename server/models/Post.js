@@ -12,8 +12,16 @@ const postSchema = new Schema(
     },
     postText: {
       type: String
+    },
+    sneakerName: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
     }
   },
+
   {
     toJSON: {
       virtuals: true,
